@@ -1,0 +1,41 @@
+<head>
+  <title>GiftaGram</title>
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <h1>GiftaGram</h1>
+
+        <form class="findGift" id="instagram-form">
+            <input type="text" name="instagram_user" placeholder="Name of instagram user" />
+
+            <!-- <input type="submit" value="Submit"> -->
+        </form>
+        <button type="submit" form="instagram-form" value="Submit">Find Gift</button>
+    </header>
+
+    <ul>
+      {{#each images}}
+        {{> image}}
+      {{/each}}
+    </ul>
+</div>
+
+<div class="container">
+    {{> hello}}
+</div>
+
+</body>
+
+
+
+<template name="image">
+    <li>{{url}} - Last called at {{lastViewedAt}}</li>
+</template>
+
+
+<template name="hello">
+    <button>Click Me</button>
+    <p>You've pressed the button {{counter}} times.</p>
+</template>

@@ -2,28 +2,28 @@
   <title>GiftaGram</title>
 </head>
 
-<body>
-<div class="container">
-    <header>
-        <h1>GiftaGram</h1>
+<template name="main">
+    <div class="container">
+        <header>
+            <h1>GiftaGram</h1>
 
-        <form class="findGift" id="instagram-form">
-            <input type="text" name="instagram_user" placeholder="Name of instagram user" />
+            <form class="findGift" id="instagram-form">
+                <input type="text" name="instagram_user" placeholder="Name of instagram user" />
 
-            <!-- <input type="submit" value="Submit"> -->
-        </form>
-        <button type="submit" form="instagram-form" value="Submit">Find Gift</button>
-    </header>
+                <!-- <input type="submit" value="Submit"> -->
+            </form>
+            <button type="submit" form="instagram-form" value="Submit">Find Gift</button>
+        </header>
 
-    <ul>
-      {{#each images}}
-          {{@index}}
-          {{> image}}
-      {{/each}}
-    </ul>
-</div>
+        <ul>
+          {{#each images}}
+              {{@index}}
+              {{> image}}
+          {{/each}}
+        </ul>
+    </div>
+</template>
 
-</body>
 
 <template name="image">
     <li>
@@ -36,4 +36,8 @@
 
 <template name="details">
     <span><li>{{text}} ({{score}})</li></span>
+</template>
+
+<template name="test">
+    <p>Lorem Ipsum.</p>
 </template>

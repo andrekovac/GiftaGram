@@ -1,23 +1,9 @@
 Images = new Mongo.Collection("images");
-Keywords = new Mongo.Collection("keywords");
 
 if (Meteor.isClient) {
 
   // counter starts at 0
   Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
 
   // This code only runs on the client
   Template.body.helpers({
@@ -43,7 +29,7 @@ if (Meteor.isClient) {
         var images = results.data.data;
 
         // Save images as Session variable
-        Session.set('images', images);
+        Session.set('images', {images: images});
 
         _.each(images, function(image, index) {
           // Insert image urls to the collection using underscore.js
@@ -51,18 +37,23 @@ if (Meteor.isClient) {
           Images.insert({
             url: image_url,
             lastViewedAt: new Date() // current time
-          });
+          }, function(err,docsInserted){
+            console.log(docsInserted);
 
-          var apikey = "55a3d2c3ad217beb7bb1f40528b28abbc195e694";
-          Meteor.call("callAlchemy", apikey, image_url, function(error, results) {
-            console.log(results.data);
+            var apikey = "55a3d2c3ad217beb7bb1f40528b28abbc195e694";
+            Meteor.call("callAlchemy", apikey, image_url, function(error, results) {
+              console.log(results.data);
 
-            Keywords.insert({
-              keywords: results.data.imageKeywords,
-              image_id: index
+              var image = Images.find( { 'url': image_url } );
+
+              Images.update({"_id": docsInserted}, { $set: {
+                keywords: results.data.imageKeywords,
+                image_id: index
+              }});
             });
-
           });
+
+
 
         });
 

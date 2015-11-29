@@ -19,10 +19,6 @@
       {{#each images}}
           {{@index}}
           {{> image}}
-          {{#each keywords}}
-              {{@index}}
-              {{> alchemy_keywords}}
-          {{/each}}
       {{/each}}
     </ul>
 </div>
@@ -33,25 +29,15 @@
 
 </body>
 
-
-
 <template name="image">
-    <li><img src="{{url}}" height=150></li>
-</template>
-
-<template name="alchemy_keywords">
-    <ul>
+    <li>
+        <img src="{{url}}" height=150>
         {{#each keywords}}
             {{> details}}
         {{/each}}
-    </ul>
+    </li>
 </template>
 
 <template name="details">
     <span><li>{{text}} ({{score}})</li></span>
-</template>
-
-<template name="hello">
-    <button>Click Me</button>
-    <p>You've pressed the button {{counter}} times.</p>
 </template>

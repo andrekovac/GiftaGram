@@ -23,8 +23,7 @@ if (Meteor.isClient) {
 
       // Get value from form element
       var instagramUser = event.target.instagram_user.value;
-      //var access_token = "***REMOVED***";
-      var access_tocken = "123456";
+      var access_token = "***REMOVED***"; // Account of Felix - change!
       Meteor.call("callInstagram", access_token, function(error, results) {
 
         console.log(results.content); //results.data should be a JSON object

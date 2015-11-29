@@ -23,29 +23,26 @@
 
         </header>
 
-        <ul>
-          {{#each images}}
-              {{@index}}
-              {{> image}}
-          {{/each}}
-        </ul>
-    </div>
+    <ul id="images">
+      {{#each images}}
+          {{> image}}
+      {{/each}}
+    </ul>
+</div>
 </template>
 
 
 <template name="image">
-    <li>
+    <li class="image">
         <img src="{{url}}" height=150>
-        {{#each keywords}}
-            {{> details}}
-        {{/each}}
+        <ul class="keywords">
+          {{#each keywords}}
+              {{> details}}
+          {{/each}}
+        </ul>
     </li>
 </template>
 
 <template name="details">
-    <span><li>{{text}} ({{score}})</li></span>
-</template>
-
-<template name="test">
-    <p>Lorem Ipsum.</p>
+    <li>{{text}} ({{score}})</li>
 </template>

@@ -8,7 +8,6 @@ Router.route('/test', function () {
   this.render('test');
 });
 
-
 if (Meteor.isClient) {
   // This code only runs on the client
   Template.main.helpers({
@@ -36,13 +35,17 @@ if (Meteor.isClient) {
         _.each(images, function(image, index) {
           // Insert image urls to the collection using underscore.js
           var image_url = image.images.standard_resolution.url;
+
           Images.insert({
             url: image_url,
-            lastViewedAt: new Date() // current time
+            lastViewedAt: new Date(), // current time
+            owner: Meteor.userId(),           // _id of logged in user
+            username: Meteor.user().username  // username of logged in user
           }, function(err,docsInserted){
             console.log(docsInserted);
 
-            var apikey = "55a3d2c3ad217beb7bb1f40528b28abbc195e694";
+            //var apikey = "55a3d2c3ad217beb7bb1f40528b28abbc195e694";
+            var apikey = "2fa8b7cf52d8cdc27bcdd82a4dc22948e13cc69a";
             Meteor.call("callAlchemy", apikey, image_url, function(error, results) {
               console.log(results.data);
 
@@ -51,7 +54,9 @@ if (Meteor.isClient) {
                 image_id: index
               }});
             });
-          });
+          }
+
+          );
 
         });
 
@@ -60,6 +65,10 @@ if (Meteor.isClient) {
       // Clear form
       event.target.instagram_user.value = "";
     }
+  });
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
   });
 
 }

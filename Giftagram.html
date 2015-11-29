@@ -3,16 +3,24 @@
 </head>
 
 <template name="main">
+
+    {{> loginButtons}}
+
     <div class="container">
         <header>
             <h1>GiftaGram</h1>
 
-            <form class="findGift" id="instagram-form">
-                <input type="text" name="instagram_user" placeholder="Name of instagram user" />
+            {{#if currentUser}}
+                <p><strong>{{username}}</strong></p>
 
-                <!-- <input type="submit" value="Submit"> -->
-            </form>
-            <button type="submit" form="instagram-form" value="Submit">Find Gift</button>
+                <form class="findGift" id="instagram-form">
+                    <input type="text" name="instagram_user" placeholder="Name of instagram user" />
+
+                    <!-- <input type="submit" value="Submit"> -->
+                </form>
+                <button type="submit" form="instagram-form" value="Submit">Find Gift</button>
+            {{/if}}
+
         </header>
 
         <ul>

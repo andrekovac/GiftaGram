@@ -23,3 +23,5 @@ accounts-password
 http
 underscore
 mrt:bootstrap-3
+iron:router
+webtempest:animate

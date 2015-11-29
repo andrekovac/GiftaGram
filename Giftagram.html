@@ -23,11 +23,17 @@
 
         </header>
 
+{{#if currentUser}}
     <ul id="images">
-      {{#each images}}
-          {{> image}}
-      {{/each}}
+
+        {{#transition in="zoomIn" out="bounceOut"}}
+            {{#each images}}
+                {{> image}}
+            {{/each}}
+        {{/transition}}
+
     </ul>
+{{/if}}
 </div>
 </template>
 
@@ -44,5 +50,5 @@
 </template>
 
 <template name="details">
-    <li>{{text}} ({{score}})</li>
+    <li class="animated">{{text}} ({{score}})</li>
 </template>

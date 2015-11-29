@@ -173,6 +173,11 @@ header .hide-completed {
     margin-left: 5px;
 }
 
+a#back-to-login-link,
+a#signup-link{
+    color: darkblue;
+}
+
 @media (max-width: 600px) {
     li {
         padding: 12px 15px;
@@ -187,3 +192,4 @@ header .hide-completed {
         padding-bottom: 5px;
     }
 }
+

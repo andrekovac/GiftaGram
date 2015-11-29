@@ -21,6 +21,10 @@ body {
     border-radius: 10px;
 }
 
+.image.hidden {
+	display: none;
+}
+
 .image {
 	border:none;
 	display: inline-block;

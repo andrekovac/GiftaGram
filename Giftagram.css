@@ -78,6 +78,15 @@ header button {
 
 #login-buttons {
     display: block;
+    text-align: center;
+}
+
+#login-buttons a, .accounts-dialog a {
+	color: white !important;
+}
+
+.login-link-and-dropdown-list {
+	margin-top: 50px;
 }
 
 h1 {

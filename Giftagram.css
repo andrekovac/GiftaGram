@@ -2,34 +2,78 @@
 /* CSS declarations go here */
 body {
     font-family: sans-serif;
-    background-color: #315481;
-    background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+    background-image: linear-gradient(to bottom, #21A486, #1C9EC6 100%);
     background-attachment: fixed;
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    padding: 0;
-    margin: 0;
-
-    font-size: 14px;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    min-height: 100%;
+    max-width: 90%;
+    margin: 50px auto;
+    box-shadow: 0 0 50px 0px;
+    padding:0;
     background: white;
+    border-radius: 10px;
+}
+
+#images {
+	text-align: center;
+	padding: 70px 0;
+    border-radius: 10px;
+}
+
+.image {
+	border:none;
+	display: inline-block;
+	padding: 0;
+	margin:10px;
+}
+
+.image img {
+	border-radius: 50%;
+}
+
+.keywords {
+	position: absolute;
+    top: 0;
+    height: 100%;
+    width:100%;
+    background: rgba(255, 255, 255, .7);
+}
+
+.keywords li {
+	padding: 10px 0;
+	border:none;
 }
 
 header {
-    background: #d2edf4;
-    background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+    background: white;
     padding: 20px 15px 15px 15px;
     position: relative;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form {
+	width:400px;
+	display: inline-block;
+	margin: 0 30px 0 0 !important;
+}
+
+form input {
+	border-bottom: 3px solid #21A486 !important;
+	font-size: 1.7em !important;
+	width: 400px !important;
+}
+
+header button {
+	background: #21A486;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    display: inline-block;
+    font-size: 2em;
 }
 
 #login-buttons {
@@ -37,11 +81,11 @@ header {
 }
 
 h1 {
-    font-size: 1.5em;
-    margin: 0;
-    margin-bottom: 10px;
-    display: inline-block;
-    margin-right: 1em;
+    font-size: 3em;
+    text-align: center;
+    color: #21A486;
+    font-weight: bold;
+    margin-bottom:30px;
 }
 
 form {

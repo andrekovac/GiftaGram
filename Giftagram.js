@@ -44,8 +44,6 @@ if (Meteor.isClient) {
             Meteor.call("callAlchemy", apikey, image_url, function(error, results) {
               console.log(results.data);
 
-              var image = Images.find( { 'url': image_url } );
-
               Images.update({"_id": docsInserted}, { $set: {
                 keywords: results.data.imageKeywords,
                 image_id: index

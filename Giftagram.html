@@ -15,9 +15,8 @@
         <button type="submit" form="instagram-form" value="Submit">Find Gift</button>
     </header>
 
-    <ul>
+    <ul id="images">
       {{#each images}}
-          {{@index}}
           {{> image}}
       {{/each}}
     </ul>
@@ -26,14 +25,16 @@
 </body>
 
 <template name="image">
-    <li>
+    <li class="image">
         <img src="{{url}}" height=150>
-        {{#each keywords}}
-            {{> details}}
-        {{/each}}
+        <ul class="keywords">
+          {{#each keywords}}
+              {{> details}}
+          {{/each}}
+        </ul>
     </li>
 </template>
 
 <template name="details">
-    <span><li>{{text}} ({{score}})</li></span>
+    <li>{{text}} ({{score}})</li>
 </template>

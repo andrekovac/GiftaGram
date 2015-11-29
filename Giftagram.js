@@ -1,5 +1,5 @@
 Images = new Mongo.Collection("images");
-Alchemy = new Mongo.Collection("alchemy");
+Keywords = new Mongo.Collection("keywords");
 
 if (Meteor.isClient) {
 
@@ -23,6 +23,9 @@ if (Meteor.isClient) {
   Template.body.helpers({
     images: function () {
       return Images.find({});
+    },
+    keywords: function() {
+      return Keywords.find({});
     }
   });
 
@@ -33,23 +36,37 @@ if (Meteor.isClient) {
 
       // Get value from form element
       var instagramUser = event.target.instagram_user.value;
-
-      Meteor.call("callInstagram", function(error, results) {
+      var access_token = "***REMOVED***";
+      Meteor.call("callInstagram", access_token, function(error, results) {
 
         console.log(results.content); //results.data should be a JSON object
         var images = results.data.data;
 
-        // Insert image urls to the collection using underscore.js
-        _.each(images, function(image) {
+        // Save images as Session variable
+        Session.set('images', images);
+
+        _.each(images, function(image, index) {
+          // Insert image urls to the collection using underscore.js
+          var image_url = image.images.standard_resolution.url;
           Images.insert({
-            url: image.images.standard_resolution.url,
+            url: image_url,
             lastViewedAt: new Date() // current time
           });
+
+          var apikey = "55a3d2c3ad217beb7bb1f40528b28abbc195e694";
+          Meteor.call("callAlchemy", apikey, image_url, function(error, results) {
+            console.log(results.data);
+
+            Keywords.insert({
+              keywords: results.data.imageKeywords,
+              image_id: index
+            });
+
+          });
+
         });
 
-      });
-
-
+      });  // end of Meteor.call
 
       // Clear form
       event.target.instagram_user.value = "";
@@ -64,9 +81,25 @@ if (Meteor.isServer) {
   });
 
   Meteor.methods({
-    callInstagram: function () {
+    callInstagram: function (access_token) {
       this.unblock();
-      return Meteor.http.call("GET", "https://api.instagram.com/v1/users/self/media/recent/?access_token=***REMOVED***");
+      return Meteor.http.call(
+          "GET",
+          //"https://api.instagram.com/v1/users/self/media/recent/?access_token=***REMOVED***",
+          "https://api.instagram.com/v1/users/self/media/recent/",
+          { params: { "access_token": access_token } });
+    },
+    callAlchemy: function(apikey, image_url) {
+      this.unblock();
+      return Meteor.http.call(
+          "GET",
+          "http://gateway-a.watsonplatform.net/calls/url/URLGetRankedImageKeywords",
+          { params: {
+            "apikey": apikey,
+            "url": image_url,
+            "outputMode": "json"
+          }}
+      );
     }
   });
 

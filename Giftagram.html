@@ -17,7 +17,12 @@
 
     <ul>
       {{#each images}}
-        {{> image}}
+          {{@index}}
+          {{> image}}
+          {{#each keywords}}
+              {{@index}}
+              {{> alchemy_keywords}}
+          {{/each}}
       {{/each}}
     </ul>
 </div>
@@ -31,9 +36,20 @@
 
 
 <template name="image">
-    <li>{{url}} - Last called at {{lastViewedAt}}</li>
+    <li><img src="{{url}}" height=150></li>
 </template>
 
+<template name="alchemy_keywords">
+    <ul>
+        {{#each keywords}}
+            {{> details}}
+        {{/each}}
+    </ul>
+</template>
+
+<template name="details">
+    <span><li>{{text}} ({{score}})</li></span>
+</template>
 
 <template name="hello">
     <button>Click Me</button>

@@ -1,21 +1,23 @@
 Images = new Mongo.Collection("images");
 
+Router.route('/', function () {
+  this.render('main');
+});
+
+Router.route('/test', function () {
+  this.render('test');
+});
+
+
 if (Meteor.isClient) {
-
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
   // This code only runs on the client
-  Template.body.helpers({
+  Template.main.helpers({
     images: function () {
       return Images.find({});
-    },
-    keywords: function() {
-      return Keywords.find({});
     }
   });
 
-  Template.body.events({
+  Template.main.events({
     "submit .findGift": function (event) {
       // Prevent default browser form submit
       event.preventDefault();
@@ -50,8 +52,6 @@ if (Meteor.isClient) {
               }});
             });
           });
-
-
 
         });
 

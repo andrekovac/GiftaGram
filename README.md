@@ -23,11 +23,15 @@ Developed during the [app@night](https://www.appatnight.de/) hackathon in Munich
 
 			var access_token = "YOUR_INSTAGRAM_ACCESS_TOKEN";
 
-3. Start the meteor server
+3. IBM Alchemy credentials
+	* Create your API key by following this [Getting Started Guide](http://www.alchemyapi.com/developers/getting-started-guide).
+	* Add your API key to the App.
+
+4. Start the meteor server
 
 		$ meteor
 
-4. Open the app by visiting `http://localhost:3000/` in your favorite browser.
+5. Open the app by visiting `http://localhost:3000/` in your favorite browser.
 
 
 ## Contributors

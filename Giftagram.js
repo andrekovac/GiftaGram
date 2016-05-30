@@ -83,7 +83,7 @@ if (Meteor.isServer) {
       this.unblock();
       return Meteor.http.call(
           "GET",
-          //"https://api.instagram.com/v1/users/self/media/recent/?access_token=***REMOVED***",
+          //"https://api.instagram.com/v1/users/self/media/recent/?access_token=2298627710.1677ed0.1714832028ac45ae9aefd1409fcc69aa",
           "https://api.instagram.com/v1/users/self/media/recent/",
           { params: { "access_token": access_token } });
     },
